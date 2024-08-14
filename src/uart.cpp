@@ -1,3 +1,4 @@
+#include <cassert>
 #include <nvboard.h>
 #include <uart.h>
 
@@ -36,7 +37,6 @@ UART::~UART() {
 
 void UART::update_gui() { // everything is done in update_state()
 }
-
 void UART::tx_receive() {
   uart_divisor_cnt = divisor - 1;
 
@@ -125,6 +125,7 @@ void init_uart(SDL_Renderer *renderer) {
   uart->add_pin(UART_TX);
   uart->add_pin(UART_RX);
   add_component(uart);
+  uart->set_divisor(128);
 }
 
 void uart_tx_receive() {
